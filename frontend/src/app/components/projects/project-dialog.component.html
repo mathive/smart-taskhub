@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Project' : 'Create Project' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="projectForm" class="flex flex-col gap-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter project title" required>
+      @if (projectForm.get('title')?.hasError('required') && projectForm.get('title')?.touched) {
+        <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea 
+        matInput 
+        formControlName="description" 
+        placeholder="Enter project description"
+        rows="4"
+      ></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="onSubmit()" 
+    [disabled]="!projectForm.valid || loading"
+  >
+    {{ loading ? 'Saving...' : (data ? 'Update' : 'Create') }}
+  </button>
+</mat-dialog-actions>
