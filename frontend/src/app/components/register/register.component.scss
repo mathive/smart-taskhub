@@ -1,0 +1,31 @@
+.register-container {
+  @apply min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4;
+
+  .register-card {
+    @apply w-full max-w-md;
+
+    mat-card-header {
+      @apply flex justify-center mb-4;
+    }
+
+    mat-card-content {
+      @apply space-y-4;
+
+      form {
+        @apply space-y-4;
+      }
+    }
+
+    .form-field {
+      @apply w-full;
+    }
+
+    .auth-buttons {
+      @apply space-y-3;
+
+      button {
+        @apply w-full;
+      }
+    }
+  }
+}

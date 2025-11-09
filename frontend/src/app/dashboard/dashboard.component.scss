@@ -1,0 +1,27 @@
+.dashboard-container {
+  @apply p-6;
+
+  .dashboard-header {
+    @apply mb-6;
+
+    h1 {
+      @apply text-2xl font-bold text-gray-900;
+    }
+  }
+
+  .dashboard-content {
+    @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+
+    .stats-card {
+      @apply bg-white rounded-lg shadow p-6;
+
+      h2 {
+        @apply text-lg font-semibold text-gray-700 mb-2;
+      }
+
+      .stats-value {
+        @apply text-3xl font-bold text-blue-600;
+      }
+    }
+  }
+}
