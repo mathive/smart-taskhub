@@ -1,0 +1,116 @@
+<div class="container mx-auto p-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <button mat-icon-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1 class="text-3xl font-bold inline-block ml-4">
+        {{ project()?.title || 'Tasks' }}
+      </h1>
+    </div>
+    <button mat-raised-button color="primary" (click)="openCreateDialog()">
+      <mat-icon>add</mat-icon>
+      New Task
+    </button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="All Tasks ({{ tasks().length }})">
+      <div class="py-4">
+        <div class="grid grid-cols-1 gap-4">
+          @for (task of tasks(); track task.id) {
+            <mat-card class="hover:shadow-md transition-shadow">
+              <mat-card-content class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2">
+                    <h3 class="text-lg font-semibold">{{ task.title }}</h3>
+                    <mat-chip [class]="'status-' + task.status">
+                      {{ task.status.replace('_', ' ') }}
+                    </mat-chip>
+                    <mat-chip [class]="'priority-' + task.priority">
+                      {{ task.priority }}
+                    </mat-chip>
+                  </div>
+                  <p class="text-gray-600 mb-2">{{ task.description || 'No description' }}</p>
+                  @if (task.dueDate) {
+                    <div class="text-sm text-gray-500">
+                      <mat-icon class="text-sm align-middle">event</mat-icon>
+                      Due: {{ task.dueDate | date }}
+                    </div>
+                  }
+                </div>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="openEditDialog(task)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item (click)="deleteTask(task)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </mat-card-content>
+            </mat-card>
+          }
+          @if (tasks().length === 0) {
+            <div class="text-center py-12">
+              <mat-icon class="text-6xl text-gray-400 mb-4">assignment</mat-icon>
+              <p class="text-gray-500 mb-4">No tasks yet</p>
+              <button mat-raised-button color="primary" (click)="openCreateDialog()">
+                Create Your First Task
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </mat-tab>
+    
+    <mat-tab label="Pending ({{ getPendingTasks().length }})">
+      <div class="py-4">
+        <div class="grid grid-cols-1 gap-4">
+          @for (task of getPendingTasks(); track task.id) {
+            <mat-card>
+              <mat-card-content>
+                <h3 class="text-lg font-semibold mb-2">{{ task.title }}</h3>
+                <p class="text-gray-600">{{ task.description || 'No description' }}</p>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </div>
+    </mat-tab>
+    
+    <mat-tab label="In Progress ({{ getInProgressTasks().length }})">
+      <div class="py-4">
+        <div class="grid grid-cols-1 gap-4">
+          @for (task of getInProgressTasks(); track task.id) {
+            <mat-card>
+              <mat-card-content>
+                <h3 class="text-lg font-semibold mb-2">{{ task.title }}</h3>
+                <p class="text-gray-600">{{ task.description || 'No description' }}</p>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </div>
+    </mat-tab>
+    
+    <mat-tab label="Completed ({{ getCompletedTasks().length }})">
+      <div class="py-4">
+        <div class="grid grid-cols-1 gap-4">
+          @for (task of getCompletedTasks(); track task.id) {
+            <mat-card>
+              <mat-card-content>
+                <h3 class="text-lg font-semibold mb-2">{{ task.title }}</h3>
+                <p class="text-gray-600">{{ task.description || 'No description' }}</p>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
