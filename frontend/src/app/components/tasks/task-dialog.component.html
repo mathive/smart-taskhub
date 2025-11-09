@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <form [formGroup]="taskForm" class="flex flex-col gap-4">
     @if (!data.projectId) {
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Project</mat-label>
         <mat-select formControlName="projectId" required>
           @for (project of projects(); track project.id) {
@@ -15,7 +15,7 @@
       </mat-form-field>
     }
 
-    <mat-form-field appearance="outline">
+    <mat-form-field >
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" placeholder="Enter task title" required>
       @if (taskForm.get('title')?.hasError('required') && taskForm.get('title')?.touched) {
@@ -23,7 +23,7 @@
       }
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field >
       <mat-label>Description</mat-label>
       <textarea 
         matInput 
@@ -34,7 +34,7 @@
     </mat-form-field>
 
     <div class="grid grid-cols-2 gap-4">
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Status</mat-label>
         <mat-select formControlName="status">
           <mat-option value="pending">Pending</mat-option>
@@ -43,7 +43,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Priority</mat-label>
         <mat-select formControlName="priority">
           <mat-option value="low">Low</mat-option>
@@ -53,7 +53,7 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field >
       <mat-label>Due Date</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="dueDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

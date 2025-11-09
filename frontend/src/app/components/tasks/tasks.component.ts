@@ -9,6 +9,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatNativeDateModule } from '@angular/material/core';
 import { TaskService, Task } from '../../services/task.service';
 import { ProjectService, Project } from '../../services/project.service';
 import { TaskDialogComponent } from './task-dialog.component';
@@ -26,6 +27,7 @@ import { TaskDialogComponent } from './task-dialog.component';
     MatChipsModule,
     MatMenuModule,
     MatTabsModule,
+    MatNativeDateModule,
   ],
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']

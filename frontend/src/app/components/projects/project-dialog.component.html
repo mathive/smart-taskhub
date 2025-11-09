@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ data ? 'Edit Project' : 'Create Project' }}</h2>
 <mat-dialog-content>
   <form [formGroup]="projectForm" class="flex flex-col gap-4">
-    <mat-form-field appearance="outline">
+    <mat-form-field >
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" placeholder="Enter project title" required>
       @if (projectForm.get('title')?.hasError('required') && projectForm.get('title')?.touched) {
@@ -9,7 +9,7 @@
       }
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field >
       <mat-label>Description</mat-label>
       <textarea 
         matInput 
